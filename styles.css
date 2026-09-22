@@ -86,11 +86,12 @@ a:hover { color: var(--ink); }
 
 .logo {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.2vw, 2.55rem);
+  font-size: clamp(1.15rem, 3.6vw, 2.2rem);
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--ink);
   text-decoration: none;
+  white-space: nowrap;
   transition: color 0.25s ease, transform 0.25s ease, letter-spacing 0.25s ease;
 }
 .logo:hover {
@@ -865,8 +866,10 @@ a:hover { color: var(--ink); }
   font-size: 0.72em;
 }
 @media (max-width: 720px) {
-  .logo-mark { display: inline; }
-  .logo { font-size: clamp(1.05rem, 4.5vw, 1.25rem); letter-spacing: 0.12em; }
+  .logo {
+    font-size: clamp(1.05rem, 4.8vw, 1.35rem);
+    letter-spacing: 0.04em;
+  }
 }
 
 
