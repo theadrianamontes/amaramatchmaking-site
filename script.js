@@ -1,11 +1,9 @@
 (function () {
   "use strict";
 
-  // Year in footer
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  // Sticky header border on scroll
   var header = document.querySelector(".site-header");
   function onScroll() {
     if (!header) return;
@@ -14,7 +12,6 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // Mobile nav
   var toggle = document.querySelector(".menu-toggle");
   var nav = document.querySelector(".nav");
   if (toggle && nav) {
@@ -32,16 +29,12 @@
     });
   }
 
-  // US phone formatting (+1 fixed)
   var phoneInput = document.getElementById("phone");
   function digitsOnly(str) {
     return (str || "").replace(/\D/g, "");
   }
   function formatUSPhone(digits) {
-    // Strip leading 1 if user typed country code
-    if (digits.length === 11 && digits.charAt(0) === "1") {
-      digits = digits.slice(1);
-    }
+    if (digits.length === 11 && digits.charAt(0) === "1") digits = digits.slice(1);
     digits = digits.slice(0, 10);
     if (digits.length === 0) return "";
     if (digits.length < 4) return "(" + digits;
@@ -55,34 +48,42 @@
   }
   if (phoneInput) {
     phoneInput.addEventListener("input", function () {
-      var start = phoneInput.selectionStart;
-      var before = phoneInput.value;
-      phoneInput.value = formatUSPhone(digitsOnly(before));
-      // Keep caret reasonable
+      phoneInput.value = formatUSPhone(digitsOnly(phoneInput.value));
       try {
         phoneInput.setSelectionRange(phoneInput.value.length, phoneInput.value.length);
-      } catch (e) { /* ignore */ }
-      void start;
+      } catch (e) {}
     });
   }
 
-  // Mailto submit
+  function setStatus(el, kind, text) {
+    if (!el) return;
+    el.hidden = !text;
+    el.classList.remove("is-error", "is-ok");
+    if (kind) el.classList.add(kind);
+    el.textContent = text || "";
+  }
+
   var form = document.getElementById("apply-form");
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
+      var role = document.getElementById("role");
       var name = document.getElementById("name");
       var email = document.getElementById("email");
       var phone = document.getElementById("phone");
       var message = document.getElementById("message");
+      var status = document.getElementById("form-status");
       var valid = true;
 
-      [name, email, phone, message].forEach(function (el) {
-        if (!el) return;
-        el.classList.remove("invalid");
+      [role, name, email, phone, message].forEach(function (el) {
+        if (el) el.classList.remove("invalid");
       });
 
+      if (!role || !role.value) {
+        if (role) role.classList.add("invalid");
+        valid = false;
+      }
       if (!name || !name.value.trim()) {
         if (name) name.classList.add("invalid");
         valid = false;
@@ -100,16 +101,20 @@
         valid = false;
       }
 
-      if (!valid) return;
+      if (!valid) {
+        setStatus(status, "is-error", "Please complete the highlighted fields (US phone needs 10 digits).");
+        var firstInvalid = form.querySelector(".invalid");
+        if (firstInvalid && firstInvalid.focus) firstInvalid.focus();
+        return;
+      }
 
       var phoneDigits = digitsOnly(phone.value);
-      if (phoneDigits.length === 11 && phoneDigits.charAt(0) === "1") {
-        phoneDigits = phoneDigits.slice(1);
-      }
+      if (phoneDigits.length === 11 && phoneDigits.charAt(0) === "1") phoneDigits = phoneDigits.slice(1);
       var phoneFormatted = "+1 " + formatUSPhone(phoneDigits);
 
       var subject = "Amara Matchmaking Application — " + name.value.trim();
       var body =
+        "Applying as: " + role.value + "\n" +
         "Name: " + name.value.trim() + "\n" +
         "Email: " + email.value.trim() + "\n" +
         "Phone: " + phoneFormatted + "\n\n" +
@@ -120,7 +125,13 @@
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(body);
 
-      window.location.href = mailto;
+      setStatus(status, "is-ok", "Opening your email app to hello@amaramatchmaking.com… If nothing opens, email that address directly.");
+
+      // Prefer window.open for mobile mail clients; fall back to location
+      var opened = window.open(mailto, "_self");
+      if (!opened) {
+        window.location.href = mailto;
+      }
     });
   }
 })();

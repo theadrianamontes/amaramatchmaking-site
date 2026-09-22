@@ -30,20 +30,26 @@
   <main>
     <!-- HERO -->
     <section class="hero" id="top">
-      <div class="container hero-inner">
-        <p class="eyebrow">Miami · Private Matchmaking</p>
-        <h1>Let us arrange your introductions.</h1>
-        <p class="hero-sub">You show up for the date.</p>
-        <p class="hero-lead">
-          A discreet, Miami-only practice for high-achieving women who are ready to stop searching and start meeting the right people in real life.
-          Curated introductions—never apps, never spectacle.
-          <strong>Men apply free.</strong>
-        </p>
-        <div class="hero-actions">
-          <a href="#apply" class="btn btn-primary">Request a Private Consultation</a>
-          <a href="#membership" class="btn btn-ghost">View Membership</a>
+      <div class="container hero-split">
+        <div class="hero-copy">
+          <p class="eyebrow">Miami · Private Matchmaking</p>
+          <h1>Let us arrange your introductions.</h1>
+          <p class="hero-sub">You show up for the date.</p>
+          <p class="hero-lead">
+            A discreet, Miami-only practice for high-achieving women who are ready to stop searching and start meeting the right people in real life.
+            Curated introductions—never apps, never spectacle.
+            <strong>Men apply free.</strong>
+          </p>
+          <div class="hero-actions">
+            <a href="#apply" class="btn btn-primary">Request a Private Consultation</a>
+            <a href="#membership" class="btn btn-ghost">View Membership</a>
+          </div>
+          <p class="hero-note">Private · Curated · Miami only · Women clients</p>
         </div>
-        <p class="hero-note">Private · Curated · Miami only · Women clients</p>
+        <figure class="hero-founder">
+          <img src="assets/founder.jpg" width="480" height="480" alt="Adriana Montes, founder of Amara Matchmaking" />
+          <figcaption>Adriana Montes · Founder</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -202,7 +208,7 @@
     <!-- FOUNDER -->
     <section class="section section-alt" id="founder">
       <div class="container founder-block">
-        <img class="founder-photo" src="assets/founder.png" width="400" height="400" alt="Adriana Montes, founder of Amara Matchmaking" />
+        <img class="founder-photo" src="assets/founder.jpg" width="400" height="400" alt="Adriana Montes, founder of Amara Matchmaking" />
         <div class="founder-copy">
           <p class="eyebrow">Founder</p>
           <h2>Adriana Montes</h2>
@@ -269,8 +275,17 @@
           Opens your email to
           <a href="mailto:hello@amaramatchmaking.com">hello@amaramatchmaking.com</a>.
         </p>
-        <form id="apply-form" class="apply-form" novalidate>
+        <form id="apply-form" class="apply-form" action="mailto:hello@amaramatchmaking.com" method="get" enctype="text/plain" novalidate>
           <p class="form-lede">Tell us about yourself. A thoughtful note helps us understand fit—whether you are applying as a women client or as a man for our free network.</p>
+          <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
+          <div class="field">
+            <label for="role">I am applying as</label>
+            <select id="role" name="role" required>
+              <option value="">Select…</option>
+              <option value="Women client">Women client (membership)</option>
+              <option value="Man applicant">Man applicant (free)</option>
+            </select>
+          </div>
           <div class="field">
             <label for="name">Full name</label>
             <input type="text" id="name" name="name" autocomplete="name" required placeholder="Your full name" />
@@ -294,7 +309,7 @@
               placeholder="A few thoughtful lines about who you are, what you’re looking for, and why Amara…"></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
-          <p class="form-note">Or email directly: <a href="mailto:hello@amaramatchmaking.com">hello@amaramatchmaking.com</a></p>
+          <p class="form-note">Opens your email to <a href="mailto:hello@amaramatchmaking.com">hello@amaramatchmaking.com</a>. If nothing opens, tap that address and send your note manually.</p>
         </form>
       </div>
     </section>
