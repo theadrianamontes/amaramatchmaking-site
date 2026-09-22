@@ -859,3 +859,106 @@ a:hover { color: var(--ink); }
 @media (max-width: 720px) {
   .logo-mark { display: none; }
 }
+
+
+/* Tawkify-inspired conversion polish (Amara brand only) */
+.hero-sub {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.35rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--accent-deep);
+  margin: -0.75rem 0 1.35rem;
+}
+
+.proof-strip {
+  background: var(--accent-deep);
+  color: var(--cream);
+  padding: 2.25rem 0;
+  border-bottom: 1px solid rgba(247, 242, 235, 0.12);
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.proof-label {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  color: #fff;
+}
+.proof-text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: rgba(247, 242, 235, 0.82);
+}
+.cta-band {
+  background:
+    radial-gradient(ellipse 70% 80% at 20% 0%, rgba(232, 207, 207, 0.45), transparent 60%),
+    var(--bg-alt);
+  border-block: 1px solid var(--line);
+  padding: clamp(3.5rem, 8vw, 5rem) 0;
+}
+.cta-band-inner {
+  display: grid;
+  grid-template-columns: 1.4fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+.cta-band h2 {
+  margin: 0.35rem 0 0.85rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+.cta-band p { margin: 0; max-width: 38em; }
+.cta-band-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 240px;
+}
+.founder-signoff {
+  margin: 1.25rem 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 120;
+  background: rgba(251, 248, 244, 0.94);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -10px 30px rgba(42, 22, 24, 0.08);
+  padding: 0.75rem 0;
+}
+.sticky-cta-inner {
+  width: min(100% - 2.5rem, var(--max));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.sticky-cta-copy {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.sticky-cta-btn {
+  padding: 0.85rem 1.5rem;
+}
+body { padding-bottom: 5.5rem; }
+@media (max-width: 900px) {
+  .proof-grid { grid-template-columns: 1fr 1fr; }
+  .cta-band-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .proof-grid { grid-template-columns: 1fr; }
+  .sticky-cta-copy { font-size: 0.82rem; }
+}
