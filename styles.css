@@ -974,6 +974,7 @@ body { padding-bottom: 5.5rem; }
 html { scroll-padding-top: 5.5rem; scroll-padding-bottom: 6rem; }
 #apply, #founder, #claudia, #membership, #how, #who { scroll-margin-top: 5.5rem; }
 .hero-split {
+  grid-template-columns: 1fr; /* photo removed */
   display: grid;
   grid-template-columns: 1.2fr minmax(220px, 340px);
   gap: clamp(1.75rem, 4vw, 3rem);
