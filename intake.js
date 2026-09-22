@@ -41,36 +41,59 @@
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var status = document.getElementById("form-status");
-    var fields = form.querySelectorAll("input, textarea");
-    fields.forEach(function (el) { el.classList.remove("invalid"); });
+    form.querySelectorAll("input, textarea, select").forEach(function (el) {
+      el.classList.remove("invalid");
+    });
 
-    var name = document.getElementById("full_name");
+    var first = document.getElementById("first_name");
+    var last = document.getElementById("last_name");
     var email = document.getElementById("email");
     var phone = document.getElementById("phone");
-    var dob = document.getElementById("dob");
     var city = document.getElementById("city");
-    var occupation = document.getElementById("occupation");
+    var gender = document.getElementById("gender");
+    var dob = document.getElementById("dob");
+    var height = document.getElementById("height");
     var narrative = document.getElementById("narrative");
+    var hobbies = document.getElementById("hobbies");
+    var faith = document.getElementById("faith");
+    var marital = document.getElementById("marital");
+    var occupation = document.getElementById("occupation");
+    var employer = document.getElementById("employer");
+    var haveKids = document.getElementById("have_kids");
+    var wantKids = form.querySelector('input[name="want_kids"]:checked');
     var headshot = document.getElementById("headshot");
-    var kids = form.querySelector('input[name="kids"]:checked');
+    var terms = document.getElementById("terms");
     var valid = true;
 
     function need(el, ok) {
-      if (!ok) { el.classList.add("invalid"); valid = false; }
+      if (!ok) {
+        if (el) el.classList.add("invalid");
+        valid = false;
+      }
     }
-    need(name, name && name.value.trim());
+
+    need(first, first && first.value.trim());
+    need(last, last && last.value.trim());
     need(email, email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()));
     need(phone, phone && isValidUSPhone(phone.value));
-    need(dob, dob && dob.value);
     need(city, city && city.value.trim());
-    need(occupation, occupation && occupation.value.trim());
+    need(gender, gender && gender.value);
+    need(dob, dob && dob.value);
+    need(height, height && height.value);
     need(narrative, narrative && narrative.value.trim().length > 40);
+    need(hobbies, hobbies && hobbies.value.trim());
+    need(faith, faith && faith.value);
+    need(marital, marital && marital.value);
+    need(occupation, occupation && occupation.value.trim());
+    need(employer, employer && employer.value.trim());
+    need(haveKids, haveKids && haveKids.value);
+    if (!wantKids) valid = false;
     need(headshot, headshot && headshot.files && headshot.files.length);
-    if (!kids) valid = false;
+    need(terms, terms && terms.checked);
 
     if (!valid) {
-      setStatus(status, "is-error", "Please complete the required fields (US phone needs 10 digits; include a headshot).");
-      var firstInvalid = form.querySelector(".invalid") || form.querySelector('input[name="kids"]');
+      setStatus(status, "is-error", "Please complete the required fields (US phone needs 10 digits; include a face photo; accept terms).");
+      var firstInvalid = form.querySelector(".invalid");
       if (firstInvalid && firstInvalid.focus) firstInvalid.focus();
       return;
     }
@@ -79,29 +102,35 @@
     if (phoneDigits.length === 11 && phoneDigits.charAt(0) === "1") phoneDigits = phoneDigits.slice(1);
     var phoneFormatted = "+1 " + formatUSPhone(phoneDigits);
 
-    var subject = "Amara private intake  -  " + name.value.trim();
+    var subject = "Amara private intake - " + first.value.trim() + " " + last.value.trim();
     var body =
-      "Amara Matchmaking  -  Confidential intake\n\n" +
-      "Full name: " + name.value.trim() + "\n" +
+      "Amara Matchmaking - Confidential intake\n\n" +
+      "First name: " + first.value.trim() + "\n" +
+      "Last name: " + last.value.trim() + "\n" +
       "Email: " + email.value.trim() + "\n" +
       "Phone: " + phoneFormatted + "\n" +
-      "Date of birth: " + dob.value + "\n" +
       "City: " + city.value.trim() + "\n" +
+      "Gender: " + gender.value + "\n" +
+      "Date of birth: " + dob.value + "\n" +
+      "Instagram: " + (document.getElementById("instagram").value.trim() || "-") + "\n" +
+      "LinkedIn: " + (document.getElementById("linkedin").value.trim() || "-") + "\n" +
+      "Height: " + height.value + "\n" +
+      "Hobbies: " + hobbies.value.trim() + "\n" +
+      "Faith/religion: " + faith.value + "\n" +
+      "Marital status: " + marital.value + "\n" +
       "Occupation: " + occupation.value.trim() + "\n" +
-      "Company: " + (document.getElementById("company").value.trim() || " - ") + "\n" +
-      "Height: " + (document.getElementById("height").value.trim() || " - ") + "\n" +
-      "Want kids: " + kids.value + "\n" +
-      "Instagram: " + (document.getElementById("instagram").value.trim() || " - ") + "\n" +
-      "LinkedIn: " + (document.getElementById("linkedin").value.trim() || " - ") + "\n\n" +
+      "Employer: " + employer.value.trim() + "\n" +
+      "Currently have children: " + haveKids.value + "\n" +
+      "Want to have kids: " + wantKids.value + "\n\n" +
       "About:\n" + narrative.value.trim() + "\n\n" +
-      "(Please attach the headshot selected in the form if it did not attach automatically.)\n";
+      "(Please attach the face photo selected in the form if it did not attach automatically.)\n";
 
     var mailto =
       "mailto:ceo@amaramatchmaking.com" +
       "?subject=" + encodeURIComponent(subject) +
       "&body=" + encodeURIComponent(body);
 
-    setStatus(status, "is-ok", "Opening your email to submit. Please attach your headshot if prompted.");
+    setStatus(status, "is-ok", "Opening your email to submit. Please attach your face photo if prompted.");
     window.location.href = mailto;
   });
 })();

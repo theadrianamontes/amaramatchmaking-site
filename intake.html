@@ -12,7 +12,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="styles.css?v=20260922b" />
-  <link rel="stylesheet" href="intake.css?v=1" />
+  <link rel="stylesheet" href="intake.css?v=2" />
 </head>
 <body class="intake-page">
   <header class="site-header">
@@ -37,17 +37,23 @@
     <section class="intake-form-section">
       <div class="container narrow">
         <form id="intake-form" class="intake-form" novalidate>
-          <fieldset class="intake-card">
-            <legend>About you</legend>
+          <div class="intake-card">
 
-            <div class="field">
-              <label for="full_name">Full name <span class="req">*</span></label>
-              <input type="text" id="full_name" name="full_name" autocomplete="name" required placeholder="Your full name" />
+            <div class="field-row">
+              <div class="field">
+                <label for="first_name">First name <span class="req">*</span></label>
+                <input type="text" id="first_name" name="first_name" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="last_name">Last name <span class="req">*</span></label>
+                <input type="text" id="last_name" name="last_name" autocomplete="family-name" required />
+              </div>
             </div>
 
             <div class="field">
-              <label for="email">Email <span class="req">*</span></label>
+              <label for="email">Email address <span class="req">*</span></label>
               <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@example.com" />
+              <p class="field-help">Double-check the spelling of your email address.</p>
             </div>
 
             <div class="field">
@@ -60,7 +66,23 @@
                 <input type="tel" id="phone" name="phone" autocomplete="tel-national" inputmode="numeric"
                        required placeholder="(305) 555-0100" maxlength="14" aria-describedby="phone-help" />
               </div>
-              <p id="phone-help" class="field-help">US numbers only. Country code +1 is fixed.</p>
+              <p id="phone-help" class="field-help">US numbers only. Country code +1 is fixed. Double-check this is correct; it will be our primary way to reach you.</p>
+            </div>
+
+            <div class="field">
+              <label for="city">City / town <span class="req">*</span></label>
+              <input type="text" id="city" name="city" required placeholder="Miami" autocomplete="address-level2" />
+            </div>
+
+            <div class="field">
+              <label for="gender">My gender <span class="req">*</span></label>
+              <select id="gender" name="gender" required>
+                <option value="">Select…</option>
+                <option>Man</option>
+                <option>Woman</option>
+                <option>Non-binary</option>
+                <option>Prefer not to say</option>
+              </select>
             </div>
 
             <div class="field">
@@ -69,68 +91,128 @@
             </div>
 
             <div class="field">
-              <label for="city">City <span class="req">*</span></label>
-              <input type="text" id="city" name="city" required placeholder="Miami" autocomplete="address-level2" />
-            </div>
-
-            <div class="field">
-              <label for="occupation">Occupation / title <span class="req">*</span></label>
-              <input type="text" id="occupation" name="occupation" required placeholder="e.g. Founder, attorney, physician" />
-            </div>
-
-            <div class="field">
-              <label for="company">Company / practice</label>
-              <input type="text" id="company" name="company" placeholder="Optional" />
-            </div>
-
-            <div class="field">
-              <label for="height">Height</label>
-              <input type="text" id="height" name="height" placeholder="e.g. 5'11&quot;" />
-            </div>
-          </fieldset>
-
-          <fieldset class="intake-card">
-            <legend>Profile</legend>
-
-            <div class="field">
-              <label for="narrative">Tell us about yourself <span class="req">*</span></label>
-              <textarea id="narrative" name="narrative" rows="8" required
-                placeholder="Who you are, what you’re looking for, and why you’d be a strong addition to our network…"></textarea>
-              <p class="field-help">A longer, more thoughtful note is encouraged.</p>
-            </div>
-
-            <div class="field">
-              <label for="kids">Do you want to have kids? <span class="req">*</span></label>
-              <div class="choice-row" role="radiogroup" aria-labelledby="kids-label">
-                <label class="choice"><input type="radio" name="kids" value="Yes" required /> Yes</label>
-                <label class="choice"><input type="radio" name="kids" value="No" required /> No</label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="instagram">Instagram <span class="opt">(optional)</span></label>
-              <input type="text" id="instagram" name="instagram" placeholder="@username or profile URL" />
+              <label for="instagram">My Instagram handle <span class="opt">(optional)</span></label>
+              <input type="text" id="instagram" name="instagram" placeholder="@username" />
             </div>
 
             <div class="field">
               <label for="linkedin">LinkedIn URL</label>
               <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/…" inputmode="url" />
             </div>
-          </fieldset>
 
-          <fieldset class="intake-card">
-            <legend>Photo</legend>
             <div class="field">
-              <label for="headshot">Headshot photo <span class="req">*</span></label>
-              <input type="file" id="headshot" name="headshot" accept="image/*" required />
-              <p class="field-help">Choose a clear, high-quality headshot where you’re smiling. Avoid group photos or sunglasses.</p>
+              <label for="height">My height <span class="req">*</span></label>
+              <select id="height" name="height" required>
+                <option value="">Select…</option>
+                <option>5'0" (152 cm)</option>
+                <option>5'1" (155 cm)</option>
+                <option>5'2" (157 cm)</option>
+                <option>5'3" (160 cm)</option>
+                <option>5'4" (163 cm)</option>
+                <option>5'5" (165 cm)</option>
+                <option>5'6" (168 cm)</option>
+                <option>5'7" (170 cm)</option>
+                <option>5'8" (173 cm)</option>
+                <option>5'9" (175 cm)</option>
+                <option>5'10" (178 cm)</option>
+                <option>5'11" (180 cm)</option>
+                <option>6'0" (183 cm)</option>
+                <option>6'1" (185 cm)</option>
+                <option>6'2" (188 cm)</option>
+                <option>6'3" (191 cm)</option>
+                <option>6'4" (193 cm)</option>
+                <option>6'5" (196 cm)</option>
+                <option>6'6" (198 cm)+</option>
+              </select>
             </div>
-          </fieldset>
 
-          <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
+            <div class="field">
+              <label for="narrative">Please tell us about yourself <span class="req">*</span></label>
+              <textarea id="narrative" name="narrative" rows="8" required
+                placeholder="What makes you stand out, and why you would be a great addition to our network…"></textarea>
+              <p class="field-help">We encourage a longer, more thoughtful narrative.</p>
+            </div>
 
-          <button type="submit" class="btn btn-primary btn-block">Submit confidential profile</button>
-          <p class="form-note">This page is private and not linked from the public site. By invitation only.</p>
+            <div class="field">
+              <label for="hobbies">Favorite activities and hobbies <span class="req">*</span></label>
+              <input type="text" id="hobbies" name="hobbies" required placeholder="e.g. sailing, cooking, travel, tennis" />
+            </div>
+
+            <div class="field">
+              <label for="faith">Faith / religion <span class="req">*</span></label>
+              <select id="faith" name="faith" required>
+                <option value="">Select…</option>
+                <option>Christian</option>
+                <option>Catholic</option>
+                <option>Jewish</option>
+                <option>Muslim</option>
+                <option>Hindu</option>
+                <option>Buddhist</option>
+                <option>Spiritual but not religious</option>
+                <option>Agnostic</option>
+                <option>Atheist</option>
+                <option>Other</option>
+                <option>Prefer not to say</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="marital">Marital status <span class="req">*</span></label>
+              <select id="marital" name="marital" required>
+                <option value="">Select…</option>
+                <option>Never married</option>
+                <option>Divorced</option>
+                <option>Widowed</option>
+                <option>Separated</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="occupation">Occupation / position <span class="req">*</span></label>
+              <input type="text" id="occupation" name="occupation" required />
+            </div>
+
+            <div class="field">
+              <label for="employer">Employer name <span class="req">*</span></label>
+              <input type="text" id="employer" name="employer" required />
+            </div>
+
+            <div class="field">
+              <label for="have_kids">Do you currently have children? <span class="req">*</span></label>
+              <select id="have_kids" name="have_kids" required>
+                <option value="">Select…</option>
+                <option>No</option>
+                <option>Yes</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Do you want to have kids? <span class="req">*</span></label>
+              <div class="choice-row">
+                <label class="choice"><input type="radio" name="want_kids" value="Yes" required /> Yes</label>
+                <label class="choice"><input type="radio" name="want_kids" value="No" required /> No</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="headshot">Face photo <span class="req">*</span></label>
+              <div class="upload-box">
+                <input type="file" id="headshot" name="headshot" accept="image/jpeg,image/png,image/webp" required />
+                <p class="field-help">Clear, high-quality headshot where you’re smiling. Avoid group photos or sunglasses. JPG, PNG, or WEBP.</p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="terms-label">
+                <input type="checkbox" id="terms" name="terms" required />
+                I accept the Terms and Conditions <span class="req">*</span>
+              </label>
+            </div>
+
+            <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            <p class="form-note">This page is private and not linked from the public site. By invitation only.</p>
+          </div>
         </form>
       </div>
     </section>
