@@ -865,7 +865,8 @@ a:hover { color: var(--ink); }
   font-size: 0.72em;
 }
 @media (max-width: 720px) {
-  .logo-mark { display: none; }
+  .logo-mark { display: inline; }
+  .logo { font-size: clamp(1.05rem, 4.5vw, 1.25rem); letter-spacing: 0.12em; }
 }
 
 
