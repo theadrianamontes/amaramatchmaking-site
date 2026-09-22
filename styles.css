@@ -773,7 +773,6 @@ a:hover { color: var(--ink); }
     border: 1px solid var(--ink);
   }
 
-  .price-card.featured { order: -1; }
 
   .apply-form {
     padding: 1.75rem 1.25rem;
@@ -927,7 +926,8 @@ a:hover { color: var(--ink); }
   font-size: 1.2rem;
   color: var(--ink);
 }
-.sticky-cta {
+.sticky-cta { display: none !important; /* removed */
+  
   position: fixed;
   left: 0;
   right: 0;
