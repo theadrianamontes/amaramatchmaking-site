@@ -99,7 +99,8 @@ a:hover { color: var(--ink); }
   letter-spacing: 0.12em;
 }
 
-.nav {
+.nav { display: none !important; /* nav removed hide */
+  
   display: flex;
   align-items: center;
   gap: 1.85rem;
@@ -149,7 +150,8 @@ a:hover { color: var(--ink); }
   box-shadow: 0 10px 24px rgba(79, 31, 42, 0.18);
 }
 
-.menu-toggle {
+.menu-toggle { display: none !important; /* nav removed */
+  
   display: none;
   flex-direction: column;
   gap: 6px;
@@ -745,7 +747,8 @@ a:hover { color: var(--ink); }
     grid-template-columns: 1fr;
   }
 
-  .menu-toggle { display: flex; }
+  .menu-toggle { display: none !important; /* nav removed */
+   display: flex; }
 
   .nav {
     display: none;

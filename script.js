@@ -12,22 +12,6 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  var toggle = document.querySelector(".menu-toggle");
-  var nav = document.querySelector(".nav");
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    });
-    nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        nav.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.setAttribute("aria-label", "Open menu");
-      });
-    });
-  }
 
   var phoneInput = document.getElementById("phone");
   function digitsOnly(str) {
