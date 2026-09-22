@@ -125,7 +125,7 @@
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(body);
 
-      setStatus(status, "is-ok", "Opening your email app to hello@amaramatchmaking.com… If nothing opens, email that address directly.");
+      setStatus(status, "is-ok", "Submitting your application…");
 
       // Prefer window.open for mobile mail clients; fall back to location
       var opened = window.open(mailto, "_self");
