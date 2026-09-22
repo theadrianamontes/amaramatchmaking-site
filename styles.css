@@ -458,10 +458,13 @@ a:hover { color: var(--ink); }
   background: linear-gradient(180deg, #fbf8f4 0%, #f3e8e6 100%);
 }
 
-.price-card-exclusive {
+/* Exclusive must beat .featured light gradient (same card has both classes) */
+.price-card.price-card-exclusive,
+.price-card.price-card-exclusive.featured {
   background: var(--accent-deep);
   border-color: var(--accent-deep);
   color: #d4b8bc;
+  box-shadow: var(--shadow);
 }
 
 .price-card-exclusive .tier-label,
